@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis는 xml을 모두 한꺼번에 읽어서 올린다. 그런데 sql 명령마다 부여된 id가 중복되면 충돌이 난다 -->
+<!-- 그런데 VO만 다르고 같은 역할을 하는데 id명을 구분하면 지저분하고 어렵다 -->
+<!-- xml 파일이 다 다르다하더라도 메모리에 한꺼번에 다 올라가서 충돌이 나기 때문이다. -->
+<!-- namespace를 줘서 구분해 충돌도 막고, 메소드명도 통일할 수 있다 -->
+
+
+<mapper namespace="myspring.user.member.dao.mapper.MemberMapper">
+<!-- <mapper namespace="userNS"> -->
+	<!-- id는 이 쿼리의 변수명 같은거, parameterType은 이 쿼리에 들어오는 입력데이터의 형태 -->
+	<!-- resultType은 이 쿼리의 결과를 반환한 결과를 담는 그릇의 타입 -->
+	<!-- 그것이 VO객체라면 sqlMapConfig에 등록한 VO의 typeAlias 이름을 적어주면 된다 -->
+	<!-- parameter가 한개면 아무렇게나 변수명을 적어도되는데 두개이상이면 무조건 객체로 받아서 객체의 변수값을 넣어야함 -->
+	<select id="selectMember" parameterType="String"
+		resultType="Member">
+		select * from member where name=#{value}
+	</select>
+</mapper>
